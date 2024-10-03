@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/gXbBODRf)
 # Laboratorul 1 - Introducere
 Scrieți un program Java care rezolvă cerințele de mai jos. **NB!** Argumentele în linie de comandă pot fi atât șiruri de caractere cât și numere întregi. Acestea vor fi stabilite folosind ecranul [Run Configuration...](https://www.jetbrains.com/help/idea/run-debug-configuration.html#from-class) din IntelliJ IDEA sau un alt IDE.
 
