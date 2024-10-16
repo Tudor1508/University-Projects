@@ -1,11 +1,15 @@
+import java.util.Scanner;
+
 class PatratePerfecte {
 
     public static void main(String[] args) {
+        int[] valori;
+
         if (args.length == 0) {
-            System.out.println("Nu ați furnizat argumente. Introduceți valori în linia de comandă.");
-            return;
+            valori = citireDeLaTastatura();
+        } else {
+            valori = citire(args);
         }
-        int[] valori = citire(args);
         int[] pp = determinapp(valori);
         afiseaza_pp(pp);
     }
@@ -25,6 +29,21 @@ class PatratePerfecte {
         return valori;
     }
 
+    private static int[] citireDeLaTastatura() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Introduceți numărul de valori: ");
+        int n = scanner.nextInt();
+
+        int[] valori = new int[n];
+
+        System.out.println("Introduceți valorile:");
+        for (int i = 0; i < n; i++) {
+            valori[i] = scanner.nextInt();
+        }
+
+        return valori;
+    }
+
     private static int[] determinapp(int[] valori) {
         int count = 0;
         for (int valoare : valori) {
@@ -32,16 +51,13 @@ class PatratePerfecte {
                 count++;
             }
         }
-
         int[] pp = new int[count];
         int index = 0;
-
         for (int valoare : valori) {
             if (estePatratPerfect(valoare)) {
                 pp[index++] = valoare;
             }
         }
-
         return pp;
     }
 
@@ -49,10 +65,9 @@ class PatratePerfecte {
         if (numar < 0) {
             return false;
         }
-        int radacina = (int) Math.sqrt(numar);
-        return radacina * radacina == numar;
+        int r = (int) Math.sqrt(numar);
+        return r * r == numar;
     }
-
     private static void afiseaza_pp(int[] pp) {
         if (pp.length == 0) {
             System.out.println("Nu există pătrate perfecte în valorile furnizate.");
