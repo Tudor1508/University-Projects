@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/Rh-4TOrT)
 # 💻 Laboratorul 2 - Arhitectura stratificată în Java
 Dezvoltați o implementare Java bazată pe principiile arhitecturii stratificate (eng. _layered architecture_) pentru una din problemele enunțate mai jos. Cerințele de îndeplinit pentru laboratorul următor (această temă se va întinde pe durata întregului semestru) sunt:
 
