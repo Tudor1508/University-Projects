@@ -23,4 +23,17 @@ public class ProgramareService {
     public List<Programare> findAll() {
         return programareRepository.findAll();
     }
+
+    public void updateProgramare(int id, Programare programareActualizata) {
+        Programare programare = programareRepository.find(id);
+        if (programare != null) {
+            delete(id); // Ștergem programarea veche
+            programareRepository.add(programareActualizata); // Adăugăm programarea actualizată
+        }
+    }
+
+    public void delete(int id) {
+        programareRepository.delete(id);
+    }
+
 }

@@ -31,6 +31,10 @@ public class ConsoleUI {
             System.out.println("2. Listează pacienți");
             System.out.println("3. Adaugă programare");
             System.out.println("4. Listează programări");
+            System.out.println("5. Actualizează pacient");
+            System.out.println("6. Șterge pacient");
+            System.out.println("7. Actualizează programare");
+            System.out.println("8. Șterge programare");
             System.out.println("0. Ieșire");
 
             int optiune = scanner.nextInt();
@@ -48,6 +52,18 @@ public class ConsoleUI {
                     break;
                 case 4:
                     listeazaProgramari();
+                    break;
+                case 5:
+                    updatePacient();
+                    break;
+                case 6:
+                    deletePacient();
+                    break;
+                case 7:
+                    updateProgramare();
+                    break;
+                case 8:
+                    deleteProgramare();
                     break;
                 case 0:
                     System.out.println("Ieșire...");
@@ -128,4 +144,67 @@ public class ConsoleUI {
             }
         }
     }
+    private void updatePacient() {
+        System.out.print("Introdu ID pacient de actualizat: ");
+        int id = scanner.nextInt();
+        scanner.nextLine(); // Consumă newline
+
+        Pacient pacient = pacientService.find(id);
+        if (pacient == null) {
+            System.out.println("Pacientul cu ID " + id + " nu a fost găsit!");
+            return;
+        }
+
+        System.out.print("Introdu noul nume pacient: ");
+        String nume = scanner.nextLine();
+
+        System.out.print("Introdu noul prenume pacient: ");
+        String prenume = scanner.nextLine();
+
+        System.out.print("Introdu noua vârstă pacient: ");
+        int varsta = scanner.nextInt();
+
+        Pacient pacientActualizat = new Pacient(id, nume, prenume, varsta);
+        pacientService.updatePacient(id, pacientActualizat);
+        System.out.println("Pacient actualizat cu succes!");
+    }
+    private void deletePacient() {
+        System.out.print("Introdu ID pacient de șters: ");
+        int id = scanner.nextInt();
+        scanner.nextLine(); // Consumă newline
+
+        pacientService.delete(id);
+        System.out.println("Pacient șters cu succes!");
+    }
+    private void updateProgramare() {
+        System.out.print("Introdu ID programare de actualizat: ");
+        int id = scanner.nextInt();
+        scanner.nextLine(); // Consumă newline
+
+        Programare programare = programareService.find(id);
+        if (programare == null) {
+            System.out.println("Programarea cu ID " + id + " nu a fost găsită!");
+            return;
+        }
+
+        System.out.print("Introdu noua dată a programării (format: YYYY-MM-DD): ");
+        String dataString = scanner.nextLine();
+        Date data = java.sql.Date.valueOf(dataString); // Convertește în Date
+
+        System.out.print("Introdu noul scop al programării: ");
+        String scop = scanner.nextLine();
+
+        Programare programareActualizata = new Programare(id, programare.getPacient(), data, scop);
+        programareService.updateProgramare(id, programareActualizata);
+        System.out.println("Programare actualizată cu succes!");
+    }
+    private void deleteProgramare() {
+        System.out.print("Introdu ID programare de șters: ");
+        int id = scanner.nextInt();
+        scanner.nextLine(); // Consumă newline
+
+        programareService.delete(id);
+        System.out.println("Programare ștearsă cu succes!");
+    }
+
 }

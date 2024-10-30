@@ -24,4 +24,17 @@ public class PacientService {
         return pacientRepository.findAll();
     }
 
+    public void updatePacient(int id, Pacient pacientActualizat) {
+        Pacient pacient = pacientRepository.find(id);
+        if (pacient != null) {
+            delete(id); // Ștergem pacientul vechi
+            pacientRepository.add(pacientActualizat); // Adăugăm pacientul actualizat
+        }
+    }
+
+    public void delete(int id) {
+        pacientRepository.delete(id);
+    }
+
+
 }
