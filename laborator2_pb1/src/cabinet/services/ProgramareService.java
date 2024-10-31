@@ -2,6 +2,7 @@ package cabinet.services;
 
 import cabinet.domeniu.Programare;
 import cabinet.repo.ProgramareRepository;
+import cabinet.exceptions.NotFoundException;
 
 import java.util.List;
 
@@ -27,13 +28,12 @@ public class ProgramareService {
     public void updateProgramare(int id, Programare programareActualizata) {
         Programare programare = programareRepository.find(id);
         if (programare != null) {
-            delete(id); // Ștergem programarea veche
-            programareRepository.add(programareActualizata); // Adăugăm programarea actualizată
+            delete(id);
+            programareRepository.add(programareActualizata);
         }
     }
 
     public void delete(int id) {
         programareRepository.delete(id);
     }
-
 }

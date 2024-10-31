@@ -1,6 +1,7 @@
 package cabinet.repo;
 
 import cabinet.domeniu.Pacient;
+import cabinet.exceptions.DuplicateIDException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,9 @@ public class PacientRepository implements Repository<Pacient> {
 
     @Override
     public void add(Pacient pacient) {
+        if (pacienti.stream().anyMatch(p -> p.getId() == pacient.getId())) {
+            throw new DuplicateIDException("Pacientul cu ID-ul " + pacient.getId() + " există deja.");
+        }
         pacienti.add(pacient);
     }
 

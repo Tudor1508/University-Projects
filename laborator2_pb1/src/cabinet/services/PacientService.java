@@ -1,6 +1,7 @@
 package cabinet.services;
 
 import cabinet.domeniu.Pacient;
+import cabinet.exceptions.NotFoundException;
 import cabinet.repo.PacientRepository;
 
 import java.util.List;
@@ -17,7 +18,11 @@ public class PacientService {
     }
 
     public Pacient find(int id) {
-        return pacientRepository.find(id);
+        Pacient pacient = pacientRepository.find(id);
+        if (pacient == null) {
+            throw new NotFoundException("Pacientul cu ID-ul " + id + " nu a fost găsit.");
+        }
+        return pacient;
     }
 
     public List<Pacient> findAll() {
@@ -27,8 +32,8 @@ public class PacientService {
     public void updatePacient(int id, Pacient pacientActualizat) {
         Pacient pacient = pacientRepository.find(id);
         if (pacient != null) {
-            delete(id); // Ștergem pacientul vechi
-            pacientRepository.add(pacientActualizat); // Adăugăm pacientul actualizat
+            delete(id);
+            pacientRepository.add(pacientActualizat);
         }
     }
 
