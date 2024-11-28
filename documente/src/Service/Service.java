@@ -78,6 +78,7 @@ public class Service {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     private void initFromFile() {
@@ -103,7 +104,6 @@ public class Service {
 
             return new Presentation(author, numberOfSlides, text);
         }
-
         return null;
     }
 
@@ -115,7 +115,6 @@ public class Service {
 
     public void afisareNuConforme() {
         List<Document> entitati = repository.getAllEntities();
-
         entitati.stream().filter(p1 -> !p1.isConformant()).sorted((p1, p2) -> (p1.getAuthor()).compareTo(p2.getAuthor()))
                 .forEach(flightInstrument -> System.out.println(flightInstrument));
     }

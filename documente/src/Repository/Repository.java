@@ -14,13 +14,4 @@ public class Repository {
     public List<Document> getAllEntities() {
         return documentList;
     }
-
-    public void deleteDocument(int index) {
-        if (index >= 1 && index <= documentList.size()) {
-            Document deletedDocument = documentList.remove(index - 1);
-            System.out.println("Documentul șters: " + deletedDocument);
-        } else {
-            throw new IllegalArgumentException("Indexul nu există. Încearcă din nou.");
-        }
-    }
 }
