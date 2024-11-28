@@ -1,10 +1,7 @@
 package UI;
 
 import Domain.Document;
-import Domain.Manuscript;
-import Domain.Presentation;
 import Service.Service;
-
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,8 +16,8 @@ public class UI {
         System.out.println("1. Adăugare document (Manuscript/Presentation)");
         System.out.println("2. Afișare toate documentele");
         System.out.println("3. Afișare documente neconforme");
-        System.out.println("4. Salvare documente conforme în fișier");
-        System.out.println("5. Ștergere document");
+        System.out.println("4. Afișare documente neconforme ordonate după autor");
+        System.out.println("5. Salvare documente conforme în fișier");
         System.out.println("0. Ieșire");
     }
 
@@ -34,8 +31,8 @@ public class UI {
                 case 1 -> addDocument();
                 case 2 -> displayAllDocuments();
                 case 3 -> displayNonConformingDocuments();
-                case 4 -> saveConformingDocumentsToFile();
-                case 5 -> deleteDocument();
+                case 4 -> displaySortedNonConformingDocuments();
+                case 5 -> saveConformingDocumentsToFile();
                 case 0 -> {
                     System.out.println("Ieșire din aplicație.");
                     return;
@@ -43,6 +40,11 @@ public class UI {
                 default -> System.out.println("Opțiune invalidă. Încercați din nou.");
             }
         }
+    }
+
+    private void displaySortedNonConformingDocuments() {
+        System.out.println("Documentele neconforme ordonate după autor:");
+        service.getSortedNonConformingDocuments().forEach(System.out::println);
     }
 
     private void addDocument() {
@@ -58,20 +60,18 @@ public class UI {
             System.out.print("Introduceți numărul de pagini: ");
             int numberOfPages = scanner.nextInt();
 
-            Manuscript manuscript = new Manuscript(author, numberOfWords, numberOfPages);
-            service.add(manuscript);
+            service.add(new Domain.Manuscript(author, numberOfWords, numberOfPages));
             System.out.println("Manuscript adăugat cu succes!");
         } else if (type.equalsIgnoreCase("Presentation")) {
             System.out.print("Introduceți autorul: ");
             String author = scanner.nextLine();
             System.out.print("Introduceți numărul de slide-uri: ");
             int numberOfSlides = scanner.nextInt();
-            scanner.nextLine();
+            scanner.nextLine(); // Clear buffer
             System.out.print("Introduceți textul prezentării: ");
             String text = scanner.nextLine();
 
-            Presentation presentation = new Presentation(author, numberOfSlides, text);
-            service.add(presentation);
+            service.add(new Domain.Presentation(author, numberOfSlides, text));
             System.out.println("Presentation adăugat cu succes!");
         } else {
             System.out.println("Tip invalid. Introduceți Manuscript sau Presentation.");
@@ -90,30 +90,14 @@ public class UI {
 
     private void displayNonConformingDocuments() {
         System.out.println("Documentele neconforme:");
-        List<Document> documents = service.getAllEntities();
-        documents.stream()
+        service.getAllEntities().stream()
                 .filter(doc -> !doc.isConformant())
                 .forEach(System.out::println);
     }
 
     private void saveConformingDocumentsToFile() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Introduceți numele fișierului unde să salvați documentele conforme: ");
-        String fileName = scanner.nextLine();
         service.fisierText();
         System.out.println("Documentele conforme au fost salvate în fișier.");
     }
 
-    private void deleteDocument() {
-        displayAllDocuments();
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Introduceți indexul documentului pe care doriți să îl ștergeți: ");
-        int index = scanner.nextInt();
-        try {
-            service.getAllEntities().remove(index - 1);
-            System.out.println("Documentul a fost șters cu succes.");
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Index invalid. Încercați din nou.");
-        }
-    }
 }

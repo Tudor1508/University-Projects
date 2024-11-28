@@ -78,7 +78,6 @@ public class Service {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     private void initFromFile() {
@@ -119,5 +118,11 @@ public class Service {
 
         entitati.stream().filter(p1 -> !p1.isConformant()).sorted((p1, p2) -> (p1.getAuthor()).compareTo(p2.getAuthor()))
                 .forEach(flightInstrument -> System.out.println(flightInstrument));
+    }
+    public List<Document> getSortedNonConformingDocuments() {
+        return repository.getAllEntities().stream()
+                .filter(doc -> !doc.isConformant())
+                .sorted((doc1, doc2) -> doc1.getAuthor().compareTo(doc2.getAuthor()))
+                .toList();
     }
 }
