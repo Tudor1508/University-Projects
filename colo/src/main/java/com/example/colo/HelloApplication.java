@@ -1,4 +1,4 @@
-package com.example.partial;
+package com.example.colo;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
