@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.colo.HelloController"
+      spacing="10" alignment="CENTER">
+    <ListView fx:id="recipeListView" prefHeight="200" />
+    <HBox spacing="10">
+        <TextField fx:id="nameTextField" promptText="Recipe Name" />
+        <TextField fx:id="timeTextField" promptText="Cooking Time (min)" />
+        <TextField fx:id="ingredientsTextField" promptText="Ingredients (comma-separated)" />
+        <Button text="Add Recipe" onAction="#addRecipe" />
+    </HBox>
+    <HBox spacing="10">
+        <TextField fx:id="filterIngredientsTextField" promptText="Filter by Ingredients" />
+        <Button text="Filter" onAction="#filterRecipes" />
+    </HBox>
+    <HBox spacing="10">
+        <Button text="Create Shopping List" onAction="#createShoppingList" />
+    </HBox>
+    <ListView fx:id="shoppingListView" prefHeight="200" />
+</VBox>
