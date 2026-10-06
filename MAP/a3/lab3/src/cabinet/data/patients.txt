@@ -1,0 +1,4 @@
+Pacient { ID=1, Nume=Ion, Prenume=Popescu, Varsta=30 }
+Pacient { ID=2, Nume=Maria, Prenume=Ionescu, Varsta=25 }
+Pacient { ID=3, Nume=Andrei, Prenume=Vasilescu, Varsta=40 }
+Pacient { ID=123, Nume=asfafw, Prenume=ewfwef, Varsta=12 }

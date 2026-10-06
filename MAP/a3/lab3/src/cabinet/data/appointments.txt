@@ -1,0 +1,2 @@
+Programare { ID=1, Pacient=2, Data=2024-01-01 10:00, Scop=Control stomatologic }
+Programare { ID=2, Pacient=3, Data=2024-01-02 14:00, Scop=Consultație dermatologică }

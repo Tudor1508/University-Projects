@@ -1,0 +1,2 @@
+Programare { ID=1, Pacient=1, Data=2023-12-01 10:00, Scop=Consultatie }
+Programare { ID=2, Pacient=2, Data=2023-12-02 14:00, Scop=Control }
